@@ -7,7 +7,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * User: ealtun
@@ -43,13 +42,4 @@ public class Stk005 implements Serializable {
     @Column(name = "STK005_Miktari")
     private Long miktar;
 
-    public Stk005(Stk005 stk005 , String malAdi) {
-        this.id = stk005.id;
-        this.malKodu = stk005.malKodu;
-        this.malAdi = malAdi;
-        this.sevkTarihi = stk005.sevkTarihi;
-        this.birimFiyati = stk005.birimFiyati;
-        this.gcTipi = stk005.gcTipi;
-        this.miktar = stk005.miktar;
-    }
 }

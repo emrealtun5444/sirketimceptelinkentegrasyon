@@ -27,16 +27,8 @@ public class CariKartEntegrasyonService implements Tasklet {
     private StokKartProducer stokKartProducer;
 
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        System.out.println("MyTaskOne start..");
-        System.out.println("MyTaskOne start..");
-
         List<StokKartDto> stokKartList = stokKartRepository.findStokKartList();
-
-        for (StokKartDto stokKartDto : stokKartList) {
-            stokKartProducer.sendToQueue(stokKartDto);
-        }
-
-        System.out.println("MyTaskOne done..");
+        stokKartList.forEach(stokKartDto -> stokKartProducer.sendToQueue(stokKartDto));
         return RepeatStatus.FINISHED;
     }
 }
