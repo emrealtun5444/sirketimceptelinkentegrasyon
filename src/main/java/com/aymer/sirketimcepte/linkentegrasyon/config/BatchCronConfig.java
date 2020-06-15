@@ -32,7 +32,7 @@ public class BatchCronConfig {
     @Autowired
     private ApplicationContext context;
 
-    @Scheduled(cron = "*/10 * * * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void cariKartEntegrasyonCronConf() throws Exception {
         JobParameters params = new JobParametersBuilder()
                 .addString("JobID", String.valueOf(System.currentTimeMillis()))
