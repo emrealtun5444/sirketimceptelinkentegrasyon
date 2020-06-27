@@ -1,7 +1,5 @@
 package com.aymer.sirketimcepte.linkentegrasyon.config;
 
-import com.aymer.sirketimcepte.linkentegrasyon.jobs.CariKartEntegrasyonService;
-import com.aymer.sirketimcepte.linkentegrasyon.service.StokKartService;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.DefaultBatchConfigurer;
@@ -42,19 +40,35 @@ public class BatchConfig extends DefaultBatchConfigurer {
     }
 
     @Bean
+    public Step stokKartEntegrasyonStep(){
+        Tasklet service = context.getBean("stokKartEntegrasyonService", Tasklet.class);
+        return steps.get("stokKartEntegrasyonStep")
+                .tasklet(service)
+                .build();
+    }
+
+    @Bean
     public Step cariKartEntegrasyonStep(){
         Tasklet service = context.getBean("cariKartEntegrasyonService", Tasklet.class);
         return steps.get("cariKartEntegrasyonStep")
-                .tasklet(service)
+            .tasklet(service)
+            .build();
+    }
+
+    @Bean(name = "stokKartEntegrasyonJob")
+    public Job stokKartEntegrasyonJob(){
+        return jobs.get("stokKartEntegrasyonJob")
+                .incrementer(new RunIdIncrementer())
+                .start(stokKartEntegrasyonStep())
                 .build();
     }
 
     @Bean(name = "cariKartEntegrasyonJob")
     public Job cariKartEntegrasyonJob(){
         return jobs.get("cariKartEntegrasyonJob")
-                .incrementer(new RunIdIncrementer())
-                .start(cariKartEntegrasyonStep())
-                .build();
+            .incrementer(new RunIdIncrementer())
+            .start(cariKartEntegrasyonStep())
+            .build();
     }
 
 

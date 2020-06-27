@@ -1,5 +1,6 @@
 package com.aymer.sirketimcepte.linkentegrasyon.producer;
 
+import com.aymer.sirketimcepte.linkentegrasyon.dto.CariKartDto;
 import com.aymer.sirketimcepte.linkentegrasyon.dto.StokKartDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,21 +15,21 @@ import org.springframework.stereotype.Service;
  * Time: 20:19
  */
 @Service
-public class StokKartProducer {
+public class CariKartProducer {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @Value("${stok.kart.rabbit.routing.name}")
+    @Value("${cari.kart.rabbit.routing.name}")
     private String routingName;
 
     @Value("${exchange.direct}")
     private String exchangeName;
 
-    public void sendToQueue(StokKartDto stokKartDto) {
+    public void sendToQueue(CariKartDto cariKartDto) {
         String jsonStr = null;
         try {
-            jsonStr = new ObjectMapper().writeValueAsString(stokKartDto);
+            jsonStr = new ObjectMapper().writeValueAsString(cariKartDto);
             rabbitTemplate.convertAndSend(exchangeName, routingName, jsonStr);
         } catch (JsonProcessingException e) {
             e.printStackTrace();

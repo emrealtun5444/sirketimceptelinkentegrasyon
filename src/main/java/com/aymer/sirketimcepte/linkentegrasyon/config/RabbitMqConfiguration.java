@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * User: ealtun
  * Date: 14.06.2020
@@ -18,30 +21,45 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqConfiguration {
 
-    @Value("${stok.kart.rabbit.queue.name}")
-    private String queueName;
-
-    @Value("${stok.kart.rabbit.routing.name}")
-    private String routingName;
-
-    @Value("${stok.kart.rabbit.exchange.name}")
+    @Value("${exchange.direct}")
     private String exchangeName;
 
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
 
-    @Bean
-    public Queue queue() {
-        return new Queue(queueName);
-    }
+    @Value("${stok.kart.rabbit.queue.name}")
+    private String stokQueueName;
+
+    @Value("${stok.kart.rabbit.routing.name}")
+    private String stokRoutingName;
+
+    @Value("${cari.kart.rabbit.queue.name}")
+    private String cariQueueName;
+
+    @Value("${cari.kart.rabbit.routing.name}")
+    private String cariRoutingName;
 
     @Bean
     public DirectExchange directExchange() {
         return new DirectExchange(exchangeName);
     }
 
+
     @Bean
-    public Binding binding(final Queue queue , final DirectExchange directExchange) {
-        return BindingBuilder.bind(queue).to(directExchange).with(routingName);
+    public Queue stokQueue() {
+        return new Queue(stokQueueName);
+    }
+
+    @Bean
+    public Queue cariQueue() {
+        return new Queue(cariQueueName);
+    }
+
+    @Bean
+    Binding bindingStokQueue() {
+        return BindingBuilder.bind(stokQueue()).to(directExchange()).with(stokRoutingName);
+    }
+
+    @Bean
+    Binding bindingCariQueue() {
+        return BindingBuilder.bind(cariQueue()).to(directExchange()).with(cariRoutingName);
     }
 }
