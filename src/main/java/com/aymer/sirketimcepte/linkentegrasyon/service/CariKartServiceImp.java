@@ -1,12 +1,10 @@
 package com.aymer.sirketimcepte.linkentegrasyon.service;
 
 import com.aymer.sirketimcepte.linkentegrasyon.dto.CariKartDto;
-import com.aymer.sirketimcepte.linkentegrasyon.dto.CariKartVisitor;
 import com.aymer.sirketimcepte.linkentegrasyon.mapper.CariKartMapper;
 import com.aymer.sirketimcepte.linkentegrasyon.model.Car002;
 import com.aymer.sirketimcepte.linkentegrasyon.repository.CariKartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

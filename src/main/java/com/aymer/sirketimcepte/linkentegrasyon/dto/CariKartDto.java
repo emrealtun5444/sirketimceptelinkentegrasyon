@@ -1,11 +1,11 @@
 package com.aymer.sirketimcepte.linkentegrasyon.dto;
 
 import com.aymer.sirketimcepte.linkentegrasyon.enums.ECariTipi;
+import com.aymer.sirketimcepte.linkentegrasyon.service.CariKartVisitor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import java.io.Serializable;
 import java.math.BigDecimal;
 

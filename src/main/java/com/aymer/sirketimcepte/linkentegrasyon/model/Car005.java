@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * User: ealtun
@@ -39,6 +40,23 @@ public class Car005 implements Serializable {
     @Column(name = "CAR005_SatirTipi")
     private String satirTipi;
 
+    @Column(name = "CAR005_BA")
+    private String borcAlacakTipi;
+
     @Column(name = "CAR002_OzelKodu")
     private String ozelKodu;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car005 car005 = (Car005) o;
+        return id.equals(car005.id) &&
+            faturaNo.equals(car005.faturaNo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, faturaNo);
+    }
 }

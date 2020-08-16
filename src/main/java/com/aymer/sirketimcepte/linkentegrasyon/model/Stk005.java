@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * User: ealtun
@@ -60,5 +61,17 @@ public class Stk005 implements Serializable {
     @Transient
     private String malAdi;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Stk005 stk005 = (Stk005) o;
+        return id.equals(stk005.id) &&
+            evrakSeriNo.equals(stk005.evrakSeriNo);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, evrakSeriNo);
+    }
 }
