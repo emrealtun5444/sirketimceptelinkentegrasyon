@@ -24,22 +24,41 @@ public class Stk005 implements Serializable {
     @Column(name = "STK005_Row_ID", nullable = false)
     private Long id;
 
+    @Column(name = "STK005_IslemTarihi")
+    private Integer islemTarihi;
+
+    @Column(name = "STK005_CariHesapKodu")
+    private String cariKodu;
+
+    @Column(name = "STK005_EvrakSeriNo")
+    private String evrakSeriNo;
+
     @Column(name = "STK005_MalKodu")
     private String malKodu;
 
-    @Transient
-    private String malAdi;
-
     @Column(name = "STK005_SevkTarihi")
     private Integer sevkTarihi;
-
-    @Column(name = "STK005_BirimFiyati")
-    private BigDecimal birimFiyati;
 
     @Column(name = "STK005_GC")
     private Long gcTipi;
 
     @Column(name = "STK005_Miktari")
     private Long miktar;
+
+    @Column(name = "STK005_BirimFiyati")
+    private BigDecimal birimFiyati;
+
+    @Column(name = "STK005_Tutari")
+    private BigDecimal tutar;
+
+    @Column(name = "STK005_Iskonto")
+    private BigDecimal iskonto;
+
+    @Column(name = "STK005_KDVTutari")
+    private BigDecimal kdvTutari;
+
+    @Transient
+    private String malAdi;
+
 
 }
