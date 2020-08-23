@@ -43,6 +43,9 @@ public class Stk005 implements Serializable {
     @Column(name = "STK005_GC")
     private Long gcTipi;
 
+    @Column(name = "STK005_EFaturaTipi")
+    private Long eFaturaTipi;
+
     @Column(name = "STK005_Miktari")
     private Long miktar;
 
