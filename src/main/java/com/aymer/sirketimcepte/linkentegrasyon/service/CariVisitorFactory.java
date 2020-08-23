@@ -16,6 +16,7 @@ public class CariVisitorFactory {
     public List<CariKartVisitor> getCariVisitorList() {
         List<CariKartVisitor> cariKartVisitorList = new ArrayList<>();
         cariKartVisitorList.add(context.getBean("cariBorcAlacakVisitor", CariBorcAlacakVisitor.class));
+        cariKartVisitorList.add(context.getBean("cariFaturaVisitor", CariFaturaVisitor.class));
         return cariKartVisitorList;
     }
 }

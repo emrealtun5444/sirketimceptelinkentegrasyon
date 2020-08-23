@@ -19,7 +19,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name = "CAR005")
-public class Car005 implements Serializable {
+public class Car005 implements Serializable ,ICari{
 
     @Id
     @Column(name = "CAR005_Row_ID", nullable = false)
@@ -42,9 +42,6 @@ public class Car005 implements Serializable {
 
     @Column(name = "CAR005_BA")
     private String borcAlacakTipi;
-
-    @Column(name = "CAR002_OzelKodu")
-    private String ozelKodu;
 
     @Override
     public boolean equals(Object o) {

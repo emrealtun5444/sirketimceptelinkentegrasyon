@@ -5,9 +5,12 @@ import com.aymer.sirketimcepte.linkentegrasyon.service.CariKartVisitor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: ealtun
@@ -34,8 +37,17 @@ public class CariKartDto implements Serializable, ItemElement {
     private String ozelKod;
     private BigDecimal toplamBorc;
     private BigDecimal toplamAlacak;
-
     private Long sirketId = 1L;
+
+    // fatura detayları
+    private List<FaturaDto> faturaList;
+
+    public void addFatura(FaturaDto faturaDto) {
+        if (CollectionUtils.isEmpty(this.faturaList)) {
+            this.faturaList = new ArrayList<>();
+        }
+        this.faturaList.add(faturaDto);
+    }
 
     @Override
     public void accept(CariKartVisitor visitor) {

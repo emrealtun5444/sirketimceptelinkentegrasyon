@@ -1,6 +1,6 @@
 package com.aymer.sirketimcepte.linkentegrasyon.repository;
 
-import com.aymer.sirketimcepte.linkentegrasyon.model.Car005;
+import com.aymer.sirketimcepte.linkentegrasyon.model.Stk005;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,8 +12,8 @@ import java.util.List;
  * Time: 16:08
  */
 @Repository
-public interface FaturaRepository extends JpaRepository<Car005, Long> {
+public interface FaturaDetayRepository extends JpaRepository<Stk005, Long> {
 
-    List<Car005> findAllByCariKoduAndSatirTipiNot(String cariKodu,String satirTipi);
+    List<Stk005> findAllByCariKodu(String cariKodu);
 
 }

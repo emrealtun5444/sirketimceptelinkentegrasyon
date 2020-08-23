@@ -12,4 +12,18 @@ public interface IConstants {
     public static final String SENET = "SENET";
     public static final String KREDI_KARTI = "KREDI_KARTI";
 
+
+    // SATIR TIPI
+    public static final String SATIR_TIPI_Z = "Z";
+    public static final String SATIR_TIPI_I = "I";
+    public static final String SATIR_TIPI_K = "K";
+    public static final String SATIR_TIPI_T = "T";
+    public static final String SATIR_TIPI_N = "N";
+    public static final String SATIR_TIPI_G = "G";
+
+    // BORC ALACAK TIPI
+    public static final String BORC = "B";
+    public static final String ALACAK = "A";
+
+
 }
