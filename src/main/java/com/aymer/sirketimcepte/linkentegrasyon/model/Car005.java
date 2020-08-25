@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -18,7 +19,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "CAR005")
+@Table(name = "V_CAR005")
 public class Car005 implements Serializable ,ICari{
 
     @Id
@@ -28,8 +29,8 @@ public class Car005 implements Serializable ,ICari{
     @Column(name = "CAR005_CHKodu")
     private String cariKodu;
 
-    @Column(name = "CAR005_FaturaTarihi")
-    private Integer faturaTarihi;
+    @Column(name = "faturaTarihi")
+    private Date faturaTarihi;
 
     @Column(name = "CAR005_FaturaNo")
     private String faturaNo;

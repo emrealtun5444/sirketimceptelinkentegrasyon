@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface FaturaRepository extends JpaRepository<Car005, Long> {
 
-    List<Car005> findAllByCariKoduAndSatirTipiNot(String cariKodu,String satirTipi);
+    List<Car005> findAllByCariKoduAndSatirTipiNotIn(String cariKodu,List<String> satirTipis);
 
 }

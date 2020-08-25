@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -18,15 +19,15 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "STK005")
+@Table(name = "V_STK005")
 public class Stk005 implements Serializable {
 
     @Id
     @Column(name = "STK005_Row_ID", nullable = false)
     private Long id;
 
-    @Column(name = "STK005_IslemTarihi")
-    private Integer islemTarihi;
+    @Column(name = "islemTarihi")
+    private Date islemTarihi;
 
     @Column(name = "STK005_CariHesapKodu")
     private String cariKodu;
@@ -37,8 +38,8 @@ public class Stk005 implements Serializable {
     @Column(name = "STK005_MalKodu")
     private String malKodu;
 
-    @Column(name = "STK005_SevkTarihi")
-    private Integer sevkTarihi;
+    @Column(name = "sevkTarihi")
+    private Date sevkTarihi;
 
     @Column(name = "STK005_GC")
     private Long gcTipi;

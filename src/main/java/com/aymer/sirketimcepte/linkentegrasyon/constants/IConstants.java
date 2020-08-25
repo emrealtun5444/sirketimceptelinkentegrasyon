@@ -20,6 +20,8 @@ public interface IConstants {
     public static final String SATIR_TIPI_T = "T";
     public static final String SATIR_TIPI_N = "N";
     public static final String SATIR_TIPI_G = "G";
+    public static final String SATIR_TIPI_J = "J";
+    public static final String SATIR_TIPI_A = "A";
 
     // BORC ALACAK TIPI
     public static final String BORC = "B";
