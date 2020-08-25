@@ -26,5 +26,7 @@ public class FaturaDetayDto implements Serializable {
     private BigDecimal tutar;
     private BigDecimal iskonto;
     private BigDecimal kdvTutari;
+    private BigDecimal toplamTutar;
+
 
 }

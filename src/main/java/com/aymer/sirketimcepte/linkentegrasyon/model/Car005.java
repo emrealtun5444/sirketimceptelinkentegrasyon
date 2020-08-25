@@ -44,6 +44,9 @@ public class Car005 implements Serializable ,ICari{
     @Column(name = "CAR005_BA")
     private String borcAlacakTipi;
 
+    @Column(name = "CAR005_CariIslemTipi")
+    private Integer cariIslemTipi;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

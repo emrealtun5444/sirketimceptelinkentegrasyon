@@ -27,5 +27,9 @@ public interface IConstants {
     public static final String BORC = "B";
     public static final String ALACAK = "A";
 
+    // cari iskem tipi
+
+    public static final Integer CARI_ISLEM_TIPI_4 = 4;
+
 
 }

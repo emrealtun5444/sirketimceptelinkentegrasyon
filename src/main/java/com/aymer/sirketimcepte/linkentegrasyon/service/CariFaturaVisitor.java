@@ -37,7 +37,7 @@ public class CariFaturaVisitor implements CariKartVisitor {
 
         // fatura ve fatura detaylar olusturuluyor.
         String[] arr = {IConstants.SATIR_TIPI_Z, IConstants.SATIR_TIPI_J, IConstants.SATIR_TIPI_A};
-        List<Car005> faturaList = faturaRepository.findAllByCariKoduAndSatirTipiNotIn(cariKartDto.getHesapKodu(), Arrays.asList(arr));
+        List<Car005> faturaList = faturaRepository.findAllByCariKoduAndCariIslemTipiAndSatirTipiNotIn(cariKartDto.getHesapKodu(),IConstants.CARI_ISLEM_TIPI_4, Arrays.asList(arr));
         List<Stk005> faturaDetayList = faturaDetayRepository.findAllByCariKodu(cariKartDto.getHesapKodu());
 
         Map<String, List<Car005>> faturaMap = faturaList.stream().collect(Collectors.groupingBy(Car005::getFaturaNo));
@@ -60,7 +60,12 @@ public class CariFaturaVisitor implements CariKartVisitor {
         Car005 faturaRow = entry.getValue().get(0);
 
         // fatura kalemlerini entity map ederiz.
-        Map<String, BigDecimal> faturaKalem = entry.getValue().stream().collect(Collectors.toMap(Car005::getSatirTipi, Car005::getFaturaTutari));
+        Map<String, BigDecimal> faturaKalem = entry.getValue().stream().
+            collect(Collectors.groupingBy(Car005::getSatirTipi,
+                Collectors.reducing(BigDecimal.ZERO,
+                    Car005::getFaturaTutari,
+                    BigDecimal::add)));
+
         FaturaDto faturaDto = FaturaDto.builder()
                 .faturaNo(entry.getKey())
                 .faturaTarihi(faturaRow.getFaturaTarihi())
@@ -87,6 +92,7 @@ public class CariFaturaVisitor implements CariKartVisitor {
                     .miktar(fd.getMiktar().intValue())
                     .tutar(fd.getTutar())
                     .stokKodu(fd.getMalKodu())
+                    .toplamTutar(fd.getTutar().add(fd.getKdvTutari()).subtract(fd.getIskonto()))
                     .build();
 
             faturaDto.addDetay(faturaDetayDto);
