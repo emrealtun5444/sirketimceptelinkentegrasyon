@@ -38,6 +38,9 @@ public class Car005 implements Serializable ,ICari{
     @Column(name = "CAR005_Tutar")
     private BigDecimal faturaTutari;
 
+    @Column(name = "CAR005_Oran")
+    private BigDecimal kdvOrani;
+
     @Column(name = "CAR005_SatirTipi")
     private String satirTipi;
 
@@ -46,6 +49,14 @@ public class Car005 implements Serializable ,ICari{
 
     @Column(name = "CAR005_CariIslemTipi")
     private Integer cariIslemTipi;
+
+    @Column(name = "CAR005_SatirAciklama")
+    private String satirAciklama;
+
+    @Column(name = "CAR005_SatirNo")
+    private Integer satirNo;
+
+
 
     @Override
     public boolean equals(Object o) {

@@ -32,6 +32,7 @@ public class FaturaDto implements Serializable {
     private BigDecimal toplamTutar;
     private EOdemeYonu faturaYonu;
 
+    private List<FaturaKalemDto> faturaKalemList;
     private List<FaturaDetayDto> faturaDetayList;
 
     public void addDetay(FaturaDetayDto faturaDetayDto) {

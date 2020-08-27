@@ -1,12 +1,10 @@
 package com.aymer.sirketimcepte.linkentegrasyon.mapper;
 
-import com.aymer.sirketimcepte.linkentegrasyon.dto.CariKartDto;
-import com.aymer.sirketimcepte.linkentegrasyon.enums.ECariTipi;
-import com.aymer.sirketimcepte.linkentegrasyon.model.Car002;
+import com.aymer.sirketimcepte.linkentegrasyon.dto.FaturaKalemDto;
+import com.aymer.sirketimcepte.linkentegrasyon.model.Car005;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,5 +15,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public abstract class FaturaMapper {
 
+    @Mapping(target = "tutar", source = "faturaTutari")
+    public abstract FaturaKalemDto mapToFaturaKalem(Car005 car005);
 
+    public abstract List<FaturaKalemDto> mapToFaturaKalemList(List<Car005> car005List);
 }

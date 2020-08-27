@@ -4,7 +4,9 @@ import com.aymer.sirketimcepte.linkentegrasyon.constants.IConstants;
 import com.aymer.sirketimcepte.linkentegrasyon.dto.CariKartDto;
 import com.aymer.sirketimcepte.linkentegrasyon.dto.FaturaDetayDto;
 import com.aymer.sirketimcepte.linkentegrasyon.dto.FaturaDto;
+import com.aymer.sirketimcepte.linkentegrasyon.dto.FaturaKalemDto;
 import com.aymer.sirketimcepte.linkentegrasyon.enums.EOdemeYonu;
+import com.aymer.sirketimcepte.linkentegrasyon.mapper.FaturaMapper;
 import com.aymer.sirketimcepte.linkentegrasyon.model.Car005;
 import com.aymer.sirketimcepte.linkentegrasyon.model.Stk005;
 import com.aymer.sirketimcepte.linkentegrasyon.repository.FaturaDetayRepository;
@@ -30,14 +32,16 @@ public class CariFaturaVisitor implements CariKartVisitor {
     @Autowired
     private FaturaDetayRepository faturaDetayRepository;
 
+    @Autowired
+    private FaturaMapper faturaMapper;
+
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public void visit(CariKartDto cariKartDto) {
 
         // fatura ve fatura detaylar olusturuluyor.
-        String[] arr = {IConstants.SATIR_TIPI_Z, IConstants.SATIR_TIPI_J, IConstants.SATIR_TIPI_A};
-        List<Car005> faturaList = faturaRepository.findAllByCariKoduAndCariIslemTipiAndSatirTipiNotIn(cariKartDto.getHesapKodu(),IConstants.CARI_ISLEM_TIPI_4, Arrays.asList(arr));
+        List<Car005> faturaList = faturaRepository.findAllByCariKoduAndCariIslemTipi(cariKartDto.getHesapKodu(),IConstants.CARI_ISLEM_TIPI_4);
         List<Stk005> faturaDetayList = faturaDetayRepository.findAllByCariKodu(cariKartDto.getHesapKodu());
 
         Map<String, List<Car005>> faturaMap = faturaList.stream().collect(Collectors.groupingBy(Car005::getFaturaNo));
@@ -58,13 +62,12 @@ public class CariFaturaVisitor implements CariKartVisitor {
 
     private FaturaDto addFatura(Map.Entry<String, List<Car005>> entry) {
         Car005 faturaRow = entry.getValue().get(0);
+        List<FaturaKalemDto> faturaKalemDtoList = faturaMapper.mapToFaturaKalemList(entry.getValue());
 
         // fatura kalemlerini entity map ederiz.
-        Map<String, BigDecimal> faturaKalem = entry.getValue().stream().
-            collect(Collectors.groupingBy(Car005::getSatirTipi,
-                Collectors.reducing(BigDecimal.ZERO,
-                    Car005::getFaturaTutari,
-                    BigDecimal::add)));
+        String[] arr = {IConstants.SATIR_TIPI_Z, IConstants.SATIR_TIPI_J, IConstants.SATIR_TIPI_A};
+        List<String> blackList = Arrays.asList(arr);
+        Map<String, BigDecimal> faturaKalem = entry.getValue().stream().filter(rw -> !blackList.contains(rw.getSatirTipi())).collect(Collectors.groupingBy(Car005::getSatirTipi, Collectors.reducing(BigDecimal.ZERO, Car005::getFaturaTutari, BigDecimal::add)));
 
         FaturaDto faturaDto = FaturaDto.builder()
                 .faturaNo(entry.getKey())
@@ -75,6 +78,7 @@ public class CariFaturaVisitor implements CariKartVisitor {
                 .netToplam(faturaKalem.get(IConstants.SATIR_TIPI_N))
                 .toplamTutar(faturaKalem.get(IConstants.SATIR_TIPI_G))
                 .faturaYonu(faturaRow.getBorcAlacakTipi().equalsIgnoreCase(IConstants.BORC) ? EOdemeYonu.BORC : EOdemeYonu.ALACAK)
+                .faturaKalemList(faturaKalemDtoList)
                 .build();
         return faturaDto;
     }
