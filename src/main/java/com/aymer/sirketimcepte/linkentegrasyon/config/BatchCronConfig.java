@@ -33,8 +33,8 @@ public class BatchCronConfig {
         JobExecution jobExecution = jobLauncher.run(job, params);
     }
 
-    @Scheduled(cron = "*/10 * * * * *")
-    //@Scheduled(cron = "0 0 * * * *")
+    //@Scheduled(cron = "*/10 * * * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void cariKartEntegrasyonCronConf() throws Exception {
         JobParameters params = new JobParametersBuilder()
             .addString("JobID", String.valueOf(System.currentTimeMillis()))

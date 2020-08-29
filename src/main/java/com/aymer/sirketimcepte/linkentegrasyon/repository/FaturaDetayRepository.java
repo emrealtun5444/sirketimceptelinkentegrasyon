@@ -4,6 +4,7 @@ import com.aymer.sirketimcepte.linkentegrasyon.model.Stk005;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +15,6 @@ import java.util.List;
 @Repository
 public interface FaturaDetayRepository extends JpaRepository<Stk005, Long> {
 
-    List<Stk005> findAllByCariKodu(String cariKodu);
+    List<Stk005> findAllByCariKoduAndIslemTarihiGreaterThanEqual(String cariKodu, Date date);
 
 }
