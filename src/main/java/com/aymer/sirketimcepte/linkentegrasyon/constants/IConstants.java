@@ -30,6 +30,7 @@ public interface IConstants {
     // cari iskem tipi
 
     public static final Integer CARI_ISLEM_TIPI_4 = 4;
+    public static final Integer E_FATURA_TIPI_1 = 1;
 
 
 }

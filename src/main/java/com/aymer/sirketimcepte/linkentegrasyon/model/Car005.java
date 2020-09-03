@@ -56,6 +56,8 @@ public class Car005 implements Serializable ,ICari{
     @Column(name = "CAR005_SatirNo")
     private Integer satirNo;
 
+    @Column(name = "CAR005_EFaturaTipi")
+    private Integer eFaturaTipi;
 
 
     @Override

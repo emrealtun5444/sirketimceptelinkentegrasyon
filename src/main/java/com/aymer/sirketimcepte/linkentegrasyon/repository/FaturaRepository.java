@@ -15,6 +15,6 @@ import java.util.List;
 @Repository
 public interface FaturaRepository extends JpaRepository<Car005, Long> {
 
-    List<Car005> findAllByCariKoduAndCariIslemTipiAndFaturaTarihiGreaterThanEqual(String cariKodu, Integer cariIslemTipi, Date date);
+    List<Car005> findAllByCariKoduAndEFaturaTipiAndFaturaTarihiGreaterThanEqual(String cariKodu, Integer eFaturaTipi, Date date);
 
 }
