@@ -47,7 +47,7 @@ public class CariFaturaVisitor implements CariKartVisitor {
         Date date = getDate();
 
         // fatura ve fatura detaylar olusturuluyor.
-        List<Car005> faturaList = faturaRepository.findAllByCariKoduAndEfaturaTipiAndFaturaTarihiGreaterThanEqual(cariKartDto.getHesapKodu(), IConstants.E_FATURA_TIPI_1, date);
+        List<Car005> faturaList = faturaRepository.findAllFaturas(cariKartDto.getHesapKodu(), date);
         List<Stk005> faturaDetayList = faturaDetayRepository.findAllByCariKoduAndIslemTarihiGreaterThanEqual(cariKartDto.getHesapKodu(), date);
 
         Map<String, List<Car005>> faturaMap = faturaList.stream().collect(Collectors.groupingBy(Car005::getFaturaNo));

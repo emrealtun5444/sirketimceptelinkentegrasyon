@@ -2,6 +2,8 @@ package com.aymer.sirketimcepte.linkentegrasyon.repository;
 
 import com.aymer.sirketimcepte.linkentegrasyon.model.Car005;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -15,6 +17,7 @@ import java.util.List;
 @Repository
 public interface FaturaRepository extends JpaRepository<Car005, Long> {
 
-    List<Car005> findAllByCariKoduAndEfaturaTipiAndFaturaTarihiGreaterThanEqual(String cariKodu, Integer eFaturaTipi, Date date);
+    @Query("select c from Car005 c where c.cariKodu = :cariKodu and c.faturaTarihi >= :faturaTarihi and exists (select 1 from Stk005 s where s.evrakSeriNo = c.faturaNo)")
+    List<Car005> findAllFaturas(@Param("cariKodu") String cariKodu, @Param("faturaTarihi") Date date);
 
 }
