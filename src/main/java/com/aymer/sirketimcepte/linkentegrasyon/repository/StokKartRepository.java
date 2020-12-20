@@ -42,7 +42,7 @@ public interface StokKartRepository extends JpaRepository<Stk005, Long> {
             "from Stk004 stk4 , Stk005 stk5 " +
             "where stk4.malKodu = stk5.malKodu " +
             "and stk5.eFaturaTipi <> 6 " +
-            "and stk4.malKodu = :stokKodu " +
+            "and trim(stk4.malKodu) = :stokKodu " +
             "group by stk4.malKodu")
     StokKartDto findByStokKodu(@Param("stokKodu") String stokKodu);
 

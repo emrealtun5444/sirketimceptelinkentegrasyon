@@ -27,7 +27,8 @@ public class StokKartController {
 
     @GetMapping("/{stokKodu}")
     public ResponseEntity<?> stokKartById(@Valid @PathVariable(name = "stokKodu") String stokKodu) {
-        StokKartDto stokKartDto = stokKartRepository.findByStokKodu(stokKodu);
+        String trimVal = stokKodu.trim();
+        StokKartDto stokKartDto = stokKartRepository.findByStokKodu(trimVal);
         return ResponseEntity.ok(stokKartDto);
     }
 
