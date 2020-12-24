@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 public interface FaturaRepository extends JpaRepository<Car005, Long> {
 
-    @Query("select c from Car005 c where c.cariKodu = :cariKodu and c.faturaTarihi >= :faturaTarihi and exists (select 1 from Stk005 s where s.evrakSeriNo = c.faturaNo)")
+    @Query("select c from Car005 c where c.cariKodu = :cariKodu and c.faturaTarihi >= :faturaTarihi")
     List<Car005> findAllFaturas(@Param("cariKodu") String cariKodu, @Param("faturaTarihi") Date date);
 
 }
