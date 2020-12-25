@@ -41,6 +41,8 @@ public class CariKartDto implements Serializable, ItemElement {
 
     // fatura detayları
     private List<FaturaDto> faturaList;
+    // siparis detayları
+    private List<SiparisDto> siparisList;
 
     public void addFatura(FaturaDto faturaDto) {
         if (CollectionUtils.isEmpty(this.faturaList)) {
