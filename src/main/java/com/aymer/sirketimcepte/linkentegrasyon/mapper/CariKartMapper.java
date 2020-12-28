@@ -18,7 +18,7 @@ import java.util.List;
 public abstract class CariKartMapper {
 
     String[] eTicaret = {"HB", "GG", "PTT", "AMZ", "N11", "TRY"};
-    String[] perakende = {"ELİF", "ELİL"};
+    String[] perakende = {"ELİF"};
 
     @Mapping(target = "cariTipi", expression = "java(getCariTipi(car002.getOzelKod()))")
     public abstract CariKartDto cariKartToDto(Car002 car002);
