@@ -41,7 +41,7 @@ public class CariBorcAlacakVisitor implements CariKartVisitor {
         BigDecimal toplamAlacak = BigDecimal.ZERO;
         if (!CollectionUtils.isEmpty(alacakList)) {
             for (Car003 item : alacakList) {
-                if (item.getIslemTipi().equals(9)) {
+                if (item.getIslemTipi().equals(9) || item.getIslemTipi().equals(5)) {
                     toplamAlacak = toplamAlacak.subtract(item.getTutar());
                 } else {
                     toplamAlacak = toplamAlacak.add(item.getTutar());
@@ -56,7 +56,11 @@ public class CariBorcAlacakVisitor implements CariKartVisitor {
         BigDecimal toplamBorc = BigDecimal.ZERO;
         if (!CollectionUtils.isEmpty(borcList)) {
             for (Car003 item : borcList) {
-                toplamBorc = toplamBorc.add(item.getTutar());
+                if (item.getIslemTipi().equals(9)) {
+                    toplamBorc = toplamBorc.subtract(item.getTutar());
+                } else {
+                    toplamBorc = toplamBorc.add(item.getTutar());
+                }
             }
         }
         return toplamBorc;
@@ -73,7 +77,7 @@ public class CariBorcAlacakVisitor implements CariKartVisitor {
                 itemList = new ArrayList<>();
             }
             itemList.add(cariKalem);
-            cariMap.put(cariKalem.getBaTipi(),itemList);
+            cariMap.put(cariKalem.getBaTipi(), itemList);
         });
         return cariMap;
     }
