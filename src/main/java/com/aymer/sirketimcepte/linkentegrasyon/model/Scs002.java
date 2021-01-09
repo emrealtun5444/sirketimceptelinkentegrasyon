@@ -21,32 +21,32 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "V_CAR003")
-public class Car003 implements Serializable {
+@Table(name = "V_SCS002")
+public class Scs002 implements Serializable {
 
     @Id
-    @Column(name = "CAR003_Row_ID", nullable = false)
+    @Column(name = "SCS002_Row_ID", nullable = false)
     private Long id;
 
     @Column(name = "tarih")
     private Date tarih;
 
-    @Column(name = "CAR003_HesapKodu")
+    @Column(name = "SCS002_HesapKodu")
     private String hesapKodu;
 
-    @Column(name = "CAR003_IslemTipi")
-    private Integer islemTipi;
+    @Column(name = "borclu")
+    private String borcluAdi;
 
-    @Column(name = "CAR003_EvrakSeriNo")
+    @Column(name = "borcluAdres")
+    private String borcluAdresi;
+
+    @Column(name = "SCS002_SenetNo")
     private String evrakNo;
 
-    @Column(name = "CAR003_Aciklama")
+    @Column(name = "SCS002_Aciklama")
     private String aciklama;
 
-    @Column(name = "CAR003_BA")
-    private Integer baTipi;
-
-    @Column(name = "CAR003_Tutar")
+    @Column(name = "SCS002_Tutar")
     private BigDecimal tutar;
 
     @Column(name = "vadeTarihi")
