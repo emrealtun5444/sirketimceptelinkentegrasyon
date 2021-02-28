@@ -23,6 +23,7 @@ public class BatchCronConfig {
     @Autowired
     private ApplicationContext context;
 
+    //@Scheduled(cron = "*/10 * * * * *")
     @Scheduled(cron = "0 0/30 6-20 * * *")
    public void stokKartEntegrasyonCronConf() throws Exception {
         JobParameters params = new JobParametersBuilder()

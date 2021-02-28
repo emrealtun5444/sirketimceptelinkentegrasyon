@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * User: ealtun
  * Date: 14.06.2020
@@ -29,6 +31,16 @@ public class StokKartProducer {
         String jsonStr = null;
         try {
             jsonStr = new ObjectMapper().writeValueAsString(stokKartDto);
+            rabbitTemplate.convertAndSend(exchangeName, routingName, jsonStr);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendToQueue(List<StokKartDto> stokKartDtoList) {
+        String jsonStr = null;
+        try {
+            jsonStr = new ObjectMapper().writeValueAsString(stokKartDtoList);
             rabbitTemplate.convertAndSend(exchangeName, routingName, jsonStr);
         } catch (JsonProcessingException e) {
             e.printStackTrace();

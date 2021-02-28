@@ -28,7 +28,8 @@ public class StokKartEntegrasyonService implements Tasklet {
 
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
         List<StokKartDto> stokKartList = stokKartRepository.findStokKartList();
-        stokKartList.forEach(stokKartDto -> stokKartProducer.sendToQueue(stokKartDto));
+        stokKartProducer.sendToQueue(stokKartList);
+        //stokKartList.forEach(stokKartDto -> stokKartProducer.sendToQueue(stokKartDto));
         return RepeatStatus.FINISHED;
     }
 }
